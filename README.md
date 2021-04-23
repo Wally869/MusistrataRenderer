@@ -19,7 +19,7 @@ AudioUtils.py contains some functions to add panning and delay to audio input. C
 Dispatcher.py contains the functions responsible to render the MusiStrata.Track and MusiStrata.Song objects.
 
 ## To Note    
-Dispatcher.py directly implements a decay enveloppe to the sound, to avoid 
+Dispatcher.py directly implements a decay enveloppe to the sound, to avoid audio clipping since I'm writing part of a sample to a np array (getting rid of these pesky "pop"s).  
 
 ## Future  
 It's a very early WIP, and a huge mess. It works to render from samples (see Media/sampleRendered.mp3 to see an example of a rendered file with added delay), but the structure will be rewritten. I'm uploading now for future reference and to share the simple scripts I've already got.  
@@ -30,6 +30,7 @@ To be added
 - Handling SoundFonts    
 - Create an actual dispatcher based on an instrument knowledge base   
 - Add sound effects/mastering such as reverb  
+- Handle samples which are too small compared to requested length
 
 Other stuff, I'll see how it goes.
 
