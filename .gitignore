@@ -1,0 +1,20 @@
+# Folders
+/Samples
+
+
+# Audio Files
+*.wav
+*.mp3
+*.mid
+
+
+# Proprietary Formats
+*.flp
+
+
+# Other utils
+*.bat
+
+
+# Personal Python Scripts
+GeneratorFLP.py
