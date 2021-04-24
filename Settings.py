@@ -1,0 +1,7 @@
+
+# Loaders Settings
+NB_SAMPLES_STORED_PER_INSTRUMENT = 10
+SAMPLES_FOLDER = "Samples"
+
+# Rendering Settings
+SONG_PADDING_SECONDS = 2.0

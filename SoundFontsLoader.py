@@ -1,18 +1,19 @@
 
 
-
-import librosa
-
-import Settings as SETTINGS
+from SoundFontsData import SOUNDFONT_FILES, SOUNDFONT_SETTINGS
 
 
-class SamplesInstrument(object):
+# use a library to render sample and load it?
+class SoundFontInstrument(object):
     def __init__(self, nameInstrument: str, maxSample: int = 10):
         self.mNameInstrument = nameInstrument
         self.mSamples = {}
     def LoadSample(self, musistrataHeight: int):
-        y, _ = librosa.load(SETTINGS.SAMPLES_FOLDER + "/" + self.mNameInstrument + "/" + self.mNameInstrument + "_" + str(musistrataHeight - 12) + ".wav", sr=None, mono=False)
-        self.mSamples[musistrataHeight] = y
+        ### NOT IMPLEMENTED YET ###
+        instrumentSettings = SOUNDFONT_SETTINGS[self.mNameInstrument]
+        sfFile = SOUNDFONT_FILES[instrumentSettings["File"]]
+        self.mSamples[musistrataHeight] = []
+        raise(NotImplementedError)
     def __call__(self, musistrataHeight: int):
         if musistrataHeight not in self.mSamples.keys():
             self.LoadSample(musistrataHeight)
@@ -20,7 +21,8 @@ class SamplesInstrument(object):
 
 
 
-class SamplesLoader(object):
+
+class SoundFontsLoader(object):
     def __init__(self, nbSamplesMaxPerInstrument: int = 10):
         self.mMaxSamples = nbSamplesMaxPerInstrument
         self.mInstruments = {}
@@ -28,5 +30,10 @@ class SamplesLoader(object):
         return self.GetInstrument(instrumentName)(musistrataHeight)
     def GetInstrument(self, instrumentName: str):
         if instrumentName not in self.mInstruments.keys():
-            self.mInstruments[instrumentName] = SamplesInstrument(instrumentName)
+            self.mInstruments[instrumentName] = SoundFontInstrument(instrumentName)
         return self.mInstruments[instrumentName]
+
+
+
+
+

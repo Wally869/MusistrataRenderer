@@ -1,5 +1,7 @@
 
-SAMPLES = [
+
+
+SAMPLES_INSTRUMENTS = [
     "Acoustic_Guitar",
     "Amplified_Cello_Quartet_Tremmy",
     "Amplified_Cello_Quartet_Wobbly",
@@ -30,9 +32,3 @@ SAMPLES = [
     "Tape_Piano"
 ]
 
-
-SoundFonts = [
-    
-
-
-]
