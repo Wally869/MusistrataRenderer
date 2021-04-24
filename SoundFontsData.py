@@ -9,14 +9,15 @@ SOUNDFONT_INSTRUMENTS = [
 
 # Give soundfont name and path to file
 SOUNDFONT_FILES = {
-    "florestan": "SoundFonts/florestan-subset.sf2"
+    "florestan": "florestan-subset.sf2",
+    "gs": "gs.sf2"
 
 }
 
 
 SOUNDFONT_SETTINGS = {
     "SoundFont_Piano": {
-        "File": "florestan",
+        "File": "gs",
         "ChannelID": 0,
         "BankID": 2
 

@@ -1,5 +1,5 @@
 # Folders
-/Samples
+Samples/*
 /__pycache__ 
 
 
@@ -7,7 +7,7 @@
 *.wav
 ./*.mp3
 *.mid
-
+/SoundFonts/gs.sf2
 
 # Proprietary Formats
 *.flp
@@ -16,6 +16,9 @@
 # Other utils
 *.bat
 
+
+# Other data files
+temp
 
 # Personal Python Scripts
 GeneratorFLP.py

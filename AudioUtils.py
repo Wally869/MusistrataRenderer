@@ -14,8 +14,8 @@ def PanStereoAudio(data: np.ndarray, panning: float) -> np.ndarray:
 
 def PanMonoAudio(data: np.ndarray, panning: float) -> np.ndarray:
     outputData = np.zeros((2, len(data)))
-    outputData[0, :] = np.cos(panning * np.pi / 2) * data[0]
-    outputData[1, :] = np.sin(panning * np.pi / 2) * data[1]
+    outputData[0, :] = np.cos(panning * np.pi / 2) * data
+    outputData[1, :] = np.sin(panning * np.pi / 2) * data
     return outputData
 
 
