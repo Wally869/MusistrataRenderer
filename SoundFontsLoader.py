@@ -1,6 +1,5 @@
 
 import librosa
-from midi2audio import FluidSynth
 
 from SoundFontsData import SOUNDFONT_FILES, SOUNDFONT_SETTINGS
 
