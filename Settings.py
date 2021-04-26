@@ -5,9 +5,11 @@ SAMPLES_FOLDER = "Samples"
 SOUNDFONTS_FOLDER = "SoundFonts"
 SOUNDFONTS_SAMPLES_FOLDER = "SoundFontsSamples"
 TEMPORARY_MIDI_FOLDER = "MidiTemp"
+
 # Memory Management
 NB_SAMPLES_STORED_PER_INSTRUMENT = 10
 CLEAR_SOUNDFONTS_SAMPLES_ON_EXIT = True
+
 
 
 # Rendering Settings

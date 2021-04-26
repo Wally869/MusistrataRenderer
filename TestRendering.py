@@ -12,6 +12,7 @@ from AudioUtils import *
 from Renderer import RenderSample
 
 import librosa
+import soundfile
 import numpy as np
 
 import Settings as SETTINGS
@@ -29,16 +30,7 @@ def RenderTrack(track: Track, tempo: int, beatsPerBar: int = 4, decayDuration: f
             y = DISPATCHER(track.Instrument, soundEvent.Note.Height)
             initialIndex = int((idBar * beatsPerBar + soundEvent.Beat) * 60 / tempo * sampleRate) 
             rendered = RenderSample(soundEvent.Duration * 60 / tempo, decayDuration, y)
-            arr[:, initialIndex:(rendered.shape[1] + initialIndex)] += rendered  # directly using rendered shape: avoid potential rounding errors?
-            """
-            initialIndex = int((idBar * beatsPerBar + soundEvent.Beat) * 60 / tempo * sampleRate) 
-            terminalIndex = int((idBar * beatsPerBar + soundEvent.Beat + soundEvent.Duration) * 60 / tempo * sampleRate) 
-            for i in range(2):
-                arr[i][initialIndex:terminalIndex] += y[i][:int(soundEvent.Duration * sampleRate * 60 / tempo)]
-                decayIndex = terminalIndex + int(decayDuration * sampleRate)
-                #print(len(y[i][int(soundEvent.Duration * sampleRate * 60 / tempo):int(soundEvent.Duration * sampleRate * 60 / tempo + decayDuration * sampleRate)]))
-                arr[i][terminalIndex:decayIndex] += y[i][int(soundEvent.Duration * sampleRate * 60 / tempo):int(soundEvent.Duration * sampleRate * 60 / tempo + decayDuration * sampleRate)] * np.arange(len(arr[i][terminalIndex:decayIndex]))[::-1] / (len(arr[i][terminalIndex:decayIndex]))
-            """
+            arr[:, initialIndex:(rendered.shape[1] + initialIndex)] += rendered  # directly using rendered shape: avoid potential rounding errors? Also good if adding effects?
     return arr
 
 
@@ -56,7 +48,7 @@ def RenderSong(song: Song, sampleRate: int = 44100) -> np.ndarray:
 
 
 def WriteArrayToFile(data: np.ndarray, filename: str, sampleRate: int = 44100):
-    librosa.output.write_wav(filename, np.asfortranarray(data), sampleRate)
+    soundfile.write(filename, data.T, sampleRate)
 
 
 
@@ -81,17 +73,19 @@ t2 = Track(Instrument="Acoustic_Guitar", Bars=[b2, b2])
 
 s = Song(Tempo=60, Tracks=[t, t2])
 
+TEMP_FOLDER = "Temp/"
+
 d = RenderTrack(t, 60)
-WriteArrayToFile(d, "t1.wav")
+WriteArrayToFile(d, TEMP_FOLDER+"t1.wav")
 
 d2 = RenderTrack(t, 180)
-WriteArrayToFile(d2, "t2.wav")
+WriteArrayToFile(d2, TEMP_FOLDER+"t2.wav")
 
 d3 = DelayStereoAudio(d, 0.5, 0.5)
-WriteArrayToFile(d3, "delayed.wav")
+WriteArrayToFile(d3, TEMP_FOLDER+"delayed.wav")
 
 d4 = RenderSong(s)
-WriteArrayToFile(d4, "s1.wav")
+WriteArrayToFile(d4, TEMP_FOLDER+"s1.wav")
 
 d5 = RenderTrack(t, 60)
 d5 = PanStereoAudio(d5, 0.33)
@@ -100,4 +94,4 @@ d6 = RenderTrack(t2, 60)
 d6 = PanStereoAudio(d6, 0.66)
 
 o1 = d5 + d6
-WriteArrayToFile(o1, "s2.wav")
+WriteArrayToFile(o1, TEMP_FOLDER+"s2.wav")

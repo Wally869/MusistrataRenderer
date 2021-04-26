@@ -34,8 +34,8 @@ class SoundFontInstrument(object):
         sfFile = SOUNDFONT_FILES[instrumentSettings["File"]]
         baseFileName = self.mNameInstrument + "_" + str(musistrataHeight - 12)
         self.GenerateMidi(musistrataHeight)
-        command_fluidsynth = "fluidsynth -T wav -F " + "temp " + SETTINGS.SOUNDFONTS_FOLDER + "/" + sfFile + " " + SETTINGS.TEMPORARY_MIDI_FOLDER + "/" + baseFileName + ".mid"
-        command_sox = "sox -t raw -r 44100 -e signed -b 16 -c 1 -v 15 temp " + SETTINGS.SOUNDFONTS_SAMPLES_FOLDER + "/" + baseFileName + ".wav " + "speed 2"
+        command_fluidsynth = "fluidsynth -T raw -F " + "Temp/temp " + SETTINGS.SOUNDFONTS_FOLDER + "/" + sfFile + " " + SETTINGS.TEMPORARY_MIDI_FOLDER + "/" + baseFileName + ".mid"
+        command_sox = "sox -t raw -r 44100 -e signed -b 16 -c 1 -v 15 Temp/temp " + SETTINGS.SOUNDFONTS_SAMPLES_FOLDER + "/" + baseFileName + ".wav " + "speed 2"
         command = command_fluidsynth + " && " + command_sox
         os.system(command)
     def GenerateMidi(self, musistrataHeight: int):
