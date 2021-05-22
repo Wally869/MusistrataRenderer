@@ -1,54 +1,12 @@
 
 
 from MusiStrata import *
+from Renderer import RenderSample, RenderTrack, RenderSong
+
+from AudioUtils import WriteArrayToFile, PanStereoAudio, DelayStereoAudio
 
 
-
-from Dispatcher import Dispatcher
-
-from AudioUtils import *
-
-
-from Renderer import RenderSample
-
-import librosa
-import soundfile
-import numpy as np
-
-import Settings as SETTINGS
-
-
-DISPATCHER = Dispatcher()
-
-
-def RenderTrack(track: Track, tempo: int, beatsPerBar: int = 4, decayDuration: float = 0.5, sampleRate: int = 44100, stereo: bool = True) -> np.ndarray:
-    # Determine length
-    duration = len(track.Bars) * beatsPerBar
-    arr = np.zeros((2, int(duration * sampleRate * 60 / tempo + SETTINGS.SONG_PADDING_SECONDS * sampleRate)))
-    for idBar, bar in enumerate(track.Bars):
-        for _, soundEvent in enumerate(bar.SoundEvents):
-            y = DISPATCHER(track.Instrument, soundEvent.Note.Height)
-            initialIndex = int((idBar * beatsPerBar + soundEvent.Beat) * 60 / tempo * sampleRate) 
-            rendered = RenderSample(soundEvent.Duration * 60 / tempo, decayDuration, y)
-            arr[:, initialIndex:(rendered.shape[1] + initialIndex)] += rendered  # directly using rendered shape: avoid potential rounding errors? Also good if adding effects?
-    return arr
-
-
-def RenderSong(song: Song, sampleRate: int = 44100) -> np.ndarray:
-    tracks = []
-    for track in song.Tracks:
-        tracks.append(
-            RenderTrack(track, song.Tempo, song.BeatsPerBar)
-        )
-    arr = tracks[0]
-    for i in range(1, len(tracks)):
-        arr += tracks[i]
-    return arr
-
-
-
-def WriteArrayToFile(data: np.ndarray, filename: str, sampleRate: int = 44100):
-    soundfile.write(filename, data.T, sampleRate)
+from simpleGen import testSong
 
 
 
@@ -95,3 +53,7 @@ d6 = PanStereoAudio(d6, 0.66)
 
 o1 = d5 + d6
 WriteArrayToFile(o1, TEMP_FOLDER+"s2.wav")
+
+so = RenderSong(testSong)
+WriteArrayToFile(so, TEMP_FOLDER+"testSong.wav")
+

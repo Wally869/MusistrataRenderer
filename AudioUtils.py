@@ -1,6 +1,7 @@
 
 
 import numpy as np
+import soundfile
 
 
 # using constant power pan: https://www.kvraudio.com/forum/viewtopic.php?t=148865 
@@ -31,4 +32,12 @@ def DelayStereoAudio(data: np.ndarray, lenDelay: float = 1.0, multiplierDelay: f
     output[:, :len(data[0])] = data
     output[:, int(lenDelay * sampleRate):] += data * multiplierDelay
     return output
+
+
+def NormalizeAudio(data: np.ndarray) -> np.ndarray:
+    return data / np.max(np.abs(data))
+
+
+def WriteArrayToFile(data: np.ndarray, filename: str, sampleRate: int = 44100):
+    soundfile.write(filename, data.T, sampleRate)
 

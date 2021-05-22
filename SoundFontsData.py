@@ -24,6 +24,16 @@ SOUNDFONT_SETTINGS = {
     }
 }
 
+SOUNDFONT_INSTRUMENTS_SETTINGS = {
+    "Default": {
+        "Decay": 0.5
+    },
+    "SoundFont_Piano": {
+        "Decay": 0.5
+    }
+
+}
+
 
 
 

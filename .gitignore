@@ -1,6 +1,6 @@
 # Folders
 Samples/*
-/__pycache__ 
+__pycache__/
 Temp/
 
 # Audio Files
@@ -22,3 +22,6 @@ temp
 
 # Personal Python Scripts
 GeneratorFLP.py
+cleanTry.py
+memTests.py
+TestServer.py

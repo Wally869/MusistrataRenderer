@@ -18,10 +18,8 @@ Can load samples from a Samples folder (handled in samples loader file), or from
 
 AudioUtils.py contains some functions to add panning and delay to audio input. Careful: We use constant power pan, so I believe a panning of 0.5 (so panned to the center) will result in a slight decrease in volume (lower sound amplitude). Will check it out.    
 
-Dispatcher.py contains the functions responsible to render the MusiStrata.Track and MusiStrata.Song objects.
+Renderer.py contains the functions responsible to render the MusiStrata.Track and MusiStrata.Song objects
 
-## To Note    
-Dispatcher.py directly implements a decay enveloppe to the sound, to avoid audio clipping since I'm writing part of a sample to a np array (getting rid of these pesky "pop"s).  
 
 ## Future  
 It's a very early WIP, and a huge mess. It works to render from samples (see Media/sampleRendered.mp3 to see an example of a rendered file with added delay), but the structure will be rewritten. I'm uploading now for future reference and to share the simple scripts I've already got.  
@@ -37,6 +35,7 @@ To be added
 - Add decay duration as a field of instrument settings
 - Enable looping generation?
 - Add cache clearing for generated soundfont samples
+- Adjust song end timing depending on instruments decay timing (long decay means OOB values)
 
 Other stuff, I'll see how it goes.
 
