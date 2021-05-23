@@ -1,6 +1,8 @@
 
 
-from MusiStrata import * 
+from MusiStrata.Components import Song, Track, Bar, SoundEvent, Note
+from MusiStrata import ScaleSpecs
+from MusiStrata import MidoConverter
 
 from random import choice
 

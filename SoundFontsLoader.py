@@ -1,14 +1,17 @@
-
-import librosa
+from typing import Dict
 
 from SoundFontsData import SOUNDFONT_FILES, SOUNDFONT_SETTINGS
 from SoundFontsDataController import SoundFontsDataController as sfdc
 
+from MusiStrata.Components import Song, Track, Bar, SoundEvent, Note 
+from MusiStrata import MidoConverter
+from AudioUtils import PanMonoAudio
+
 import Settings as SETTINGS
 
+import librosa
 import os
-from MusiStrata import * 
-from AudioUtils import PanMonoAudio
+
 
 # use a library to render sample and load it?
 # should use this instead of midi2audio? https://github.com/nwhitehead/pyfluidsynth
@@ -62,7 +65,7 @@ class SoundFontsLoader(object):
         if instrumentName not in self.mInstruments.keys():
             self.mInstruments[instrumentName] = SoundFontInstrument(instrumentName)
         return self.mInstruments[instrumentName]
-        
+
     def GetSettingsInstrument(self, instrumentName: str) -> Dict:
         if instrumentName not in self.mInstruments.keys():
             self.mInstruments[instrumentName] = SoundFontInstrument(instrumentName)

@@ -1,10 +1,10 @@
 from typing import Dict
 
 from SoundFontsData import SOUNDFONT_INSTRUMENTS
-from SoundFontsLoader import *
+from SoundFontsLoader import SoundFontsLoader
 
 from SamplesData import SAMPLES_INSTRUMENTS
-from SamplesLoader import *  
+from SamplesLoader import SamplesLoader  
 
 import Settings as SETTINGS
 

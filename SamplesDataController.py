@@ -1,6 +1,6 @@
 from typing import Dict
 
-from SamplesData import *
+from SamplesData import SAMPLES_INSTRUMENTS,SAMPLES_INSTRUMENTS_SETTINGS, SAMPLES_FOLDERS
 
 class SamplesDataController(object):
     def __init__(self):
