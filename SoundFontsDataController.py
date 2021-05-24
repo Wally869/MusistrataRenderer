@@ -5,7 +5,7 @@ from SoundFontsData import SOUNDFONT_FILES, SOUNDFONT_INSTRUMENTS, SOUNDFONT_INS
 class SoundFontsDataController(object):
     def __init__(self):
         pass
-
+    
     @classmethod
     def GetSettingsInstrument(cls, nameInstrument: str) -> Dict:
         if nameInstrument not in SOUNDFONT_INSTRUMENTS_SETTINGS.keys():

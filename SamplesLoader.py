@@ -11,7 +11,7 @@ class SamplesInstrument(object):
         self.mNameInstrument = nameInstrument
         self.kSettings = sdc.GetSettingsInstrument(nameInstrument)
         self.mSamples = {}
-
+    
     def LoadSample(self, musistrataHeight: int):
         y, _ = librosa.load(SETTINGS.SAMPLES_FOLDER + "/" + self.kSettings["Folder"] + "/" + self.mNameInstrument + "_" + str(musistrataHeight - 12) + ".wav", sr=None, mono=False)
         self.mSamples[musistrataHeight] = y
@@ -20,7 +20,6 @@ class SamplesInstrument(object):
         if musistrataHeight not in self.mSamples.keys():
             self.LoadSample(musistrataHeight)
         return self.mSamples[musistrataHeight]
-
 
 
 class SamplesLoader(object):
