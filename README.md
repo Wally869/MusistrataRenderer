@@ -1,6 +1,9 @@
 # Musistrata Renderer  
 
-Creating an interface to render Musistrata-defined songs using a variety of sources (soundfonts, user-defined samples, custom synthesizer...)  
+Creating an interface to render Musistrata-defined songs using a variety of sources (soundfonts, user-defined samples, custom synthesizer...)   
+
+Docs are available at: wally869.github.io/musistratarenderer/   
+
 
 
 ## Why?  
