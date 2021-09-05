@@ -1,3 +1,8 @@
+"""
+    Controller for Samples-based instrument settings. 
+
+"""
+
 from typing import Dict
 
 from SamplesData import SAMPLES_INSTRUMENTS,SAMPLES_INSTRUMENTS_SETTINGS, SAMPLES_FOLDERS

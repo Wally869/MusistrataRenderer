@@ -1,4 +1,7 @@
+"""
+    Definition of available samples-based instruments. 
 
+"""
 
 
 SAMPLES_INSTRUMENTS = [

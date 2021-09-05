@@ -1,3 +1,7 @@
+"""
+    Settings for SoundFont files and SoundFont-based instruments. 
+
+"""
 
 # Soundfonts are not directly in a folder
 # need to reference the soundfont file, the channel number and 

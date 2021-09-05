@@ -1,3 +1,8 @@
+"""
+    Controller for Soundfont-based instrument settings. 
+
+"""
+
 from typing import Dict
 
 from SoundFontsData import SOUNDFONT_FILES, SOUNDFONT_INSTRUMENTS, SOUNDFONT_INSTRUMENTS_SETTINGS, SOUNDFONT_SETTINGS
@@ -8,6 +13,9 @@ class SoundFontsDataController(object):
     
     @classmethod
     def GetSettingsInstrument(cls, nameInstrument: str) -> Dict:
+        """
+            Handle settings reading of SoundFont-based instruments.
+        """
         if nameInstrument not in SOUNDFONT_INSTRUMENTS_SETTINGS.keys():
             return {
                 "File": SOUNDFONT_FILES[SOUNDFONT_SETTINGS[nameInstrument]["File"]],

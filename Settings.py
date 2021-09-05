@@ -1,3 +1,11 @@
+"""
+    General Settings:  
+        - Data Folders paths
+        - Memory and Caching Settings
+        - Rendering Settings
+
+"""
+
 
 # Loaders Settings
 # Pathing

@@ -1,4 +1,6 @@
-
+"""
+    Render MusiStrata songs and tracks to numpy array.  
+"""
 
 from MusiStrata.Components import Song, Track, Bar, SoundEvent, Note
 from SamplesLocator import SamplesLocator
@@ -14,6 +16,9 @@ LOCATOR = SamplesLocator()
 
 # here assuming stereo
 def RenderSample(targetDuration: float, decayDuration: float, sampleData: np.ndarray, sampleRate: int = 44100) -> np.ndarray:
+    """
+        Render a sample to a target length with added decay.  
+    """
     terminalIndex = int(targetDuration * sampleRate)
     decayTerminalIndex = int((targetDuration + decayDuration) * sampleRate)
     arr = np.zeros((2, decayTerminalIndex), dtype=float)
@@ -23,6 +28,9 @@ def RenderSample(targetDuration: float, decayDuration: float, sampleData: np.nda
 
 
 def RenderTrack(track: Track, tempo: int, beatsPerBar: int = 4, sampleRate: int = 44100, stereo: bool = True) -> np.ndarray:
+    """
+        Render a Musistrata track by reading all sound events, loading samples and writing to a numpy array.  
+    """
     # Determine length
     duration = len(track.Bars) * beatsPerBar
     arr = np.zeros((2, int(duration * sampleRate * 60 / tempo + SETTINGS.SONG_PADDING_SECONDS * sampleRate)))
@@ -36,6 +44,9 @@ def RenderTrack(track: Track, tempo: int, beatsPerBar: int = 4, sampleRate: int 
 
 
 def RenderSong(song: Song, sampleRate: int = 44100) -> np.ndarray:
+    """
+        Render a Musistrata Song to a numpy array by rendering every track of the song to a different array, before summing these individual arrays.
+    """
     tracks = []
     for track in song.Tracks:
         tracks.append(
