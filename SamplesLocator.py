@@ -12,6 +12,9 @@ from SoundFontsLoader import SoundFontsLoader
 from SamplesData import SAMPLES_INSTRUMENTS
 from SamplesLoader import SamplesLoader  
 
+from SynthesizerData import SYNTHESIZER_INSTRUMENTS
+from SynthesizerLoader import SynthesizerLoader
+
 import Settings as SETTINGS
 
 import numpy as np
@@ -23,6 +26,7 @@ class SamplesLocator(object):
     def __init__(self):
         self.mSoundFontsLoader = SoundFontsLoader(SETTINGS.NB_SAMPLES_STORED_PER_INSTRUMENT)
         self.mSamplesLoader = SamplesLoader(SETTINGS.NB_SAMPLES_STORED_PER_INSTRUMENT)
+        self.mSynthesizerLoader = SynthesizerLoader(SETTINGS.NB_SAMPLES_STORED_PER_INSTRUMENT)
 
     def __call__(self, instrumentName: str, musistrataHeight: int) -> np.ndarray:
         """
@@ -32,8 +36,11 @@ class SamplesLocator(object):
             return self.mSoundFontsLoader(instrumentName, musistrataHeight)
         elif instrumentName in SAMPLES_INSTRUMENTS:
             return self.mSamplesLoader(instrumentName, musistrataHeight)
+        elif instrumentName in SYNTHESIZER_INSTRUMENTS:
+            return self.mSynthesizerLoader(instrumentName, musistrataHeight)
         else:
-            raise("SamplesLocator - Call -- Unknown Instrument (" + instrumentName + ")")
+            errorMessage = "SamplesLocator - Call -- Unknown Instrument (" + instrumentName + ")" 
+            raise(KeyError(errorMessage))
         
     def GetSettingsInstrument(self, instrumentName: str) -> Dict:
         """
@@ -43,5 +50,9 @@ class SamplesLocator(object):
             return self.mSoundFontsLoader.GetSettingsInstrument(instrumentName)
         elif instrumentName in SAMPLES_INSTRUMENTS:
             return self.mSamplesLoader.GetSettingsInstrument(instrumentName)
+        elif instrumentName in SYNTHESIZER_INSTRUMENTS:
+            return self.mSynthesizerLoader.GetSettingsInstrument(instrumentName)            
         else:
-            raise("SamplesLocator - GetSettingsInstrument -- Unknown Instrument (" + instrumentName + ")")
+            errorMessage = "SamplesLocator - GetSettingsInstrument -- Unknown Instrument (" + instrumentName + ")"
+            raise(KeyError(errorMessage))
+

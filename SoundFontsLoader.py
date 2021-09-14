@@ -1,5 +1,5 @@
 """
-    Contains the SoundFontsLoader and SoundFontInstrument classes, which handle loading and caching samples for Samples-based instruments.
+    Contains the SoundFontsLoader and SoundFontInstrument classes, which handle loading and caching samples for Soundfont-based instruments.
 
 """
 

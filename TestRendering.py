@@ -49,7 +49,7 @@ if __name__ == "__main__":
     b = Bar(se)
     b2 = Bar(se2)
     #t = Track(Instrument="Stage_Grand_Piano", Bars=[b, b])
-    t = Track(Instrument="SoundFont_Piano", Bars=[b, b])
+    t = Track(Instrument="test_synth", Bars=[b, b])
     t2 = Track(Instrument="Acoustic_Guitar", Bars=[b2, b2])
 
     s = Song(Tempo=60, Tracks=[t, t2])
