@@ -62,5 +62,5 @@ def WriteArrayToFile(data: np.ndarray, filename: str, sampleRate: int = 44100) -
     """
         Write a numpy array to a wav file.
     """
-    soundfile.write(filename, data.T, sampleRate)
+    soundfile.write(filename, data.T, sampleRate, "PCM_24")
 

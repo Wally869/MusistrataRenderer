@@ -55,4 +55,4 @@ def RenderSong(song: Song, sampleRate: int = 44100) -> np.ndarray:
     arr = tracks[0]
     for i in range(1, len(tracks)):
         arr += tracks[i]
-    return arr
+    return arr / np.max(np.abs(arr))

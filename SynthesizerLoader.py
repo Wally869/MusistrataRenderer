@@ -7,8 +7,9 @@ from typing import Dict
 
 
 from SynthesizerDataController import SynthesizerDataController as sdc
+from BaseSynthesizerDriver import BaseSynthesizerDriver
 
-from MusiStrata.Components import Song, Track, Bar, SoundEvent, Note 
+from MusiStrata.Components import Note 
 from MusiStrata import MidoConverter
 from AudioUtils import PanMonoAudio
 
@@ -29,15 +30,19 @@ class SynthesizerInstrument(object):
 
     def LoadSample(self, musistrataHeight: int) -> None:
         """
-            Load a sample in memory. Calls self.GenerateSample if the sample has not been extracted from the soundfont
+            Generate and Load a sample in memory. 
+        """
         """
         # Check if sample already generated, else generate it then load it
         frequency = Note.FromHeight(musistrataHeight + 12).Frequency
         deltaTimes = np.arange(20.0 * 44100) / 44100
-        y = np.sin(frequency * deltaTimes) * np.exp(-0.0015 * frequency * deltaTimes)
-        y += 0.6 * np.sin(frequency * 2.0 * deltaTimes) * np.exp(-0.0015 * frequency * deltaTimes)
+        y = np.sin(frequency * deltaTimes) 
         y /= np.max(y)
         self.mSamples[musistrataHeight] = PanMonoAudio(y, 0.5)
+        """
+        frequency = Note.FromHeight(musistrataHeight + 12).Frequency
+        self.mSamples[musistrataHeight] = BaseSynthesizerDriver.Generate(frequency, self.kSettings["Payload"])
+        
 
     def __call__(self, musistrataHeight: int) -> np.ndarray:
         """
@@ -78,6 +83,13 @@ class SynthesizerLoader(object):
             self.mInstruments[instrumentName] = SynthesizerInstrument(instrumentName)
         return self.mInstruments[instrumentName].kSettings["InstrumentSettings"]
 
+    def GetPayloadInstrument(self, instrumentName: str) -> Dict:
+        """
+            Get payload associated with a given synthesizer instrument name.
+        """
+        if instrumentName not in self.mInstruments.keys():
+            self.mInstruments[instrumentName] = SynthesizerInstrument(instrumentName)
+        return self.mInstruments[instrumentName].kSettings["Payload"]    
 
 
 

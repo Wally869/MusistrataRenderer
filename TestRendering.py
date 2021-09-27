@@ -8,7 +8,7 @@ from AudioUtils import WriteArrayToFile, PanStereoAudio, DelayStereoAudio
 
 from simpleGen import testSong
 
-
+"""
 def DoRender():
     se = [
         SoundEvent(0.0, 2.0, Note=Note("C", 5)),
@@ -32,6 +32,7 @@ def DoRender():
 
     d = RenderTrack(t, 60)
     WriteArrayToFile(d, TEMP_FOLDER+"t1.wav")
+"""
 
 
 if __name__ == "__main__":
@@ -49,7 +50,7 @@ if __name__ == "__main__":
     b = Bar(se)
     b2 = Bar(se2)
     #t = Track(Instrument="Stage_Grand_Piano", Bars=[b, b])
-    t = Track(Instrument="test_synth", Bars=[b, b])
+    t = Track(Instrument="Default_Synth", Bars=[b, b])
     t2 = Track(Instrument="Acoustic_Guitar", Bars=[b2, b2])
 
     s = Song(Tempo=60, Tracks=[t, t2])
@@ -58,7 +59,7 @@ if __name__ == "__main__":
 
     d = RenderTrack(t, 60)
     WriteArrayToFile(d, TEMP_FOLDER+"t1.wav")
-
+    
     d2 = RenderTrack(t, 180)
     WriteArrayToFile(d2, TEMP_FOLDER+"t2.wav")
 
